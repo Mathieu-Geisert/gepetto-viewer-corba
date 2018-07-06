@@ -4,7 +4,7 @@ create client to wanted HPP services.
 """
 from omniORB import CORBA
 import CosNaming
-
+from os import environ
 import gepetto.corbaserver
 
 class CorbaError(Exception):
@@ -61,6 +61,11 @@ class Client:
     """
     if host is not None:
         url = "corbaloc:iiop:" + str(host) + "/NameService"
+    elif environ.get("CORBA_HOST") is not None:
+        url = "corbaloc:iiop:" + str(environ.get("CORBA_HOST")) + "/NameService"
+        print "Connection with the corbaserver of host " + environ.get("CORBA_HOST") + "."
+    else:
+	print "GEPETTO-VIEWER IS CLIENT ONLY AND NO SERVER HAS BEEN SPECIFIED... \n PLEASE DISABLE ALL VISUALIZATION OR SET \"CORBA_HOST\"."
     import sys
     self.orb = CORBA.ORB_init (sys.argv, CORBA.ORB_ID)
     obj = self.orb.string_to_object (url)
