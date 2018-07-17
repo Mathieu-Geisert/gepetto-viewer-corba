@@ -65,7 +65,7 @@ class Client:
         url = "corbaloc:iiop:" + str(environ.get("CORBA_HOST")) + "/NameService"
         print "Connection with the corbaserver of host " + environ.get("CORBA_HOST") + "."
     else:
-	print "GEPETTO-VIEWER IS CLIENT ONLY AND NO SERVER HAS BEEN SPECIFIED... \n PLEASE DISABLE ALL VISUALIZATION OR SET \"CORBA_HOST\"."
+	print "GEPETTO-VIEWER IS CLIENT ONLY AND NO EXTERNAL SERVER HAS BEEN SPECIFIED... \n PLEASE SET \"CORBA_HOST\" TO GET VISUALIZATION."
     import sys
     self.orb = CORBA.ORB_init (sys.argv, CORBA.ORB_ID)
     obj = self.orb.string_to_object (url)
