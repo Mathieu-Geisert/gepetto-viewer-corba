@@ -61,9 +61,10 @@ class Client:
     """
     if host is not None:
         url = "corbaloc:iiop:" + str(host) + "/NameService"
+        print "Connection with the corbaserver of host " + str(host) + "."
     elif environ.get("CORBA_HOST") is not None:
         url = "corbaloc:iiop:" + str(environ.get("CORBA_HOST")) + "/NameService"
-        print "Connection with the corbaserver of host " + environ.get("CORBA_HOST") + "."
+        print "Connection with the corbaserver of host CORBA_HOST=" + environ.get("CORBA_HOST") + "."
     else:
 	print "GEPETTO-VIEWER IS CLIENT ONLY AND NO EXTERNAL SERVER HAS BEEN SPECIFIED... \n PLEASE SET \"CORBA_HOST\" TO GET VISUALIZATION."
     import sys
